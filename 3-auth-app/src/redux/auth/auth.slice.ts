@@ -26,7 +26,7 @@ const authSlice = createSlice({
 
       state.loading = false;
       state.isAuthenticated = true;
-      state.user = { email: email };
+      state.user = email ? { email } : null;
       state.token = token;
     },
     setLoginFailure: (state, action: PayloadAction<string>) => {

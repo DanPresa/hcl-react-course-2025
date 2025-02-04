@@ -1,5 +1,8 @@
-interface UserAuthenticated {
+interface User {
   email: string;
+}
+
+interface UserAuthenticated extends User {
   token: string;
 }
 
@@ -15,7 +18,7 @@ type LoginFormValues = Pick<FormRegisterValues, 'email' | 'password'>;
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: { email: string } | null;
+  user: User | null;
   token: string | null;
   loading: boolean;
   error: string | null;
