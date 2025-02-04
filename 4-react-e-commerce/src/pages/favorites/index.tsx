@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import useFavoritesActions from '../../redux/favorites/useFavoritesActions';
+import useCartActions from '../../redux/cart/useCartActions';
 import {
   Box,
   Typography,
@@ -15,8 +16,13 @@ import { Add, Delete, ArrowBack } from '@mui/icons-material';
 
 const FavoritesPage = () => {
   const { favorites, removeProductFromFavorite } = useFavoritesActions();
+  const { addProduct } = useCartActions();
   const [tab, setTab] = useState(0);
   const navigate = useNavigate();
+
+  const handleAddProductToCartClick = (product: Product) => {
+    addProduct(product);
+  };
 
   const handleRemoveProductClick = (product: Product) => {
     removeProductFromFavorite(product);
@@ -99,7 +105,12 @@ const FavoritesPage = () => {
 
                   {/* Actions */}
                   <Box sx={{ display: 'flex', mt: 1, gap: 2 }}>
-                    <Button startIcon={<Add />} variant="text" color="primary">
+                    <Button
+                      startIcon={<Add />}
+                      variant="text"
+                      color="primary"
+                      onClick={() => handleAddProductToCartClick(product)}
+                    >
                       Add to Cart
                     </Button>
                     <Button

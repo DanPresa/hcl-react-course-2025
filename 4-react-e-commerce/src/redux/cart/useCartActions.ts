@@ -13,21 +13,21 @@ const useCartActions = () => {
   const { products, openDrawer } = useSelector(cartSelector);
 
   const addProduct = useCallback(
-    (product: Product) => {
-      dispatch(addProductToCart(product));
+    (product: Product, amount?: number) => {
+      dispatch(addProductToCart(product, amount));
     },
     [dispatch]
   );
 
   const changeProductQuantity = useCallback(
-    (productId: number, amount: number) => {
-      dispatch(updateProductQuantity(productId, amount));
+    (product: Product, amount: number) => {
+      dispatch(updateProductQuantity(product, amount));
     },
     [dispatch]
   );
 
   const removeProductFromCart = useCallback(
-    (product: ProductCart) => {
+    (product: Product) => {
       dispatch(removeProduct(product.id));
     },
     [dispatch]

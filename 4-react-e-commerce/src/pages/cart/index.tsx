@@ -25,14 +25,11 @@ const CartPage = () => {
   );
   const totalProducts = products.reduce((acc, item) => acc + item.quantity, 0);
 
-  const handleUpdateProductQuantity = (
-    product: ProductCart,
-    amount: number
-  ) => {
-    changeProductQuantity(product.id, amount);
+  const handleUpdateProductQuantity = (product: Product, amount: number) => {
+    changeProductQuantity(product, amount);
   };
 
-  const handleDeleteProductFromCartClick = (product: ProductCart) => {
+  const handleDeleteProductFromCartClick = (product: Product) => {
     removeProductFromCart(product);
   };
 
@@ -56,7 +53,7 @@ const CartPage = () => {
           {products.length === 0 ? (
             <Typography>No products in the cart.</Typography>
           ) : (
-            products.map((prod: ProductCart) => (
+            products.map((prod: Product) => (
               <Card
                 key={prod.id}
                 sx={{

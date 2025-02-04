@@ -2,29 +2,35 @@ import { AppDispatch, RootState } from '../store';
 import { cartSelector, setProducts, setToggleDrawer } from './cart.slice';
 
 export const addProductToCart =
-  (product: Product) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (product: Product, amount: number = 1) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
     const { products } = cartSelector(getState());
 
     const existingProduct = products.find((prod) => prod.id === product.id);
 
     if (!existingProduct) {
-      dispatch(setProducts([...products, { ...product, quantity: 1 }]));
+      dispatch(
+        setProducts([
+          ...products,
+          { ...product, quantity: amount ? amount : 1 },
+        ])
+      );
     } else {
-      dispatch(updateProductQuantity(product.id, 1));
+      dispatch(updateProductQuantity(product, 1));
     }
 
     dispatch(setToggleDrawer(true));
   };
 
 export const updateProductQuantity =
-  (productId: number, amount: number) =>
+  (product: Product, amount: number) =>
   (dispatch: AppDispatch, getState: () => RootState) => {
     const { products } = cartSelector(getState());
 
     const isNegativeAmount = amount < 0 ? -1 : 1;
 
-    const updateProducts = products.map((prod: ProductCart) =>
-      prod.id === productId
+    const updateProducts = products.map((prod: Product) =>
+      prod.id === product.id
         ? {
             ...prod,
             quantity: Math.max(prod.quantity + isNegativeAmount, 1),

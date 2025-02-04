@@ -24,7 +24,7 @@ import useCartActions from '../../redux/cart/useCartActions';
 
 const ProductDetails = () => {
   const { product, fetchProductById } = useProductsActions();
-  const { addProduct } = useCartActions();
+  const { addProduct, changeProductQuantity } = useCartActions();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
 
@@ -32,7 +32,15 @@ const ProductDetails = () => {
   const { productId } = useParams();
 
   const handleAddProductToCartClick = (product: Product) => {
-    addProduct(product);
+    addProduct(product, quantity);
+  };
+
+  const handleUpdateProductQuantityClick = (
+    product: Product,
+    amount: number
+  ) => {
+    changeProductQuantity(product, amount);
+    setQuantity(amount);
   };
 
   useEffect(() => {
@@ -128,12 +136,19 @@ const ProductDetails = () => {
           {/* Quantity Selector */}
           <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, gap: 2 }}>
             <IconButton
-              onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+              disabled={quantity === 1}
+              onClick={() =>
+                handleUpdateProductQuantityClick(product, quantity - 1)
+              }
             >
               <Remove />
             </IconButton>
             <Typography>{quantity}</Typography>
-            <IconButton onClick={() => setQuantity(quantity + 1)}>
+            <IconButton
+              onClick={() =>
+                handleUpdateProductQuantityClick(product, quantity + 1)
+              }
+            >
               <Add />
             </IconButton>
 

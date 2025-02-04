@@ -1,4 +1,4 @@
-import { formatCategories } from './../../utils/formatCategories';
+import { formatCategories } from '../../utils/formatCategories';
 import axiosInstance from '../../config/api/axiosInstance';
 import { AppDispatch } from '../store';
 import {

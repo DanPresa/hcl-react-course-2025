@@ -31,13 +31,13 @@ const CartDrawer = () => {
   );
 
   const handleUpdateProductQuantityClick = (
-    productId: number,
+    product: Product,
     amount: number
   ) => {
-    changeProductQuantity(productId, amount);
+    changeProductQuantity(product, amount);
   };
 
-  const handleRemoveProductClick = (product: ProductCart) => {
+  const handleRemoveProductClick = (product: Product) => {
     removeProductFromCart(product);
   };
 
@@ -94,18 +94,14 @@ const CartDrawer = () => {
                   />
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton
-                      onClick={() =>
-                        handleUpdateProductQuantityClick(prod.id, -1)
-                      }
+                      onClick={() => changeProductQuantity(prod, -1)}
                       disabled={prod.quantity <= 1}
                     >
                       <Remove />
                     </IconButton>
                     <Typography>{prod.quantity}</Typography>
                     <IconButton
-                      onClick={() =>
-                        handleUpdateProductQuantityClick(prod.id, 1)
-                      }
+                      onClick={() => handleUpdateProductQuantityClick(prod, 1)}
                     >
                       <Add />
                     </IconButton>
