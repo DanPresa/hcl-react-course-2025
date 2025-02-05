@@ -18,7 +18,7 @@ export const getAllProducts = () => async (dispatch: AppDispatch) => {
     if (error instanceof Error) {
       dispatch(setError(error.message));
     } else {
-      dispatch(setError(error));
+      dispatch(setError('An unknown error occurred'));
     }
   }
 };
@@ -37,7 +37,7 @@ export const getProductsByCategory =
       if (error instanceof Error) {
         dispatch(setError(error.message));
       } else {
-        dispatch(setError(error));
+        dispatch(setError('An unknown error occurred'));
       }
     }
   };
@@ -56,7 +56,7 @@ export const getProductById =
       if (error instanceof Error) {
         dispatch(setError(error.message));
       } else {
-        dispatch(setError(error));
+        dispatch(setError('An unknown error occurred'));
       }
     }
   };

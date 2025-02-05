@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 const initialState: FavoritesState = {
@@ -9,7 +9,7 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    setFavorites: (state, action) => {
+    setFavorites: (state, action: PayloadAction<Product[]>) => {
       state.favorites = action.payload;
     },
   },

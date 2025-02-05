@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 const initialState: CategoriesState = {
@@ -16,14 +16,14 @@ const categoriesSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    setCategories: (state, action) => {
+    setCategories: (state, action: PayloadAction<Category[]>) => {
       state.loading = false;
       state.categories = action.payload;
     },
-    setSelectedCategory: (state, action) => {
+    setSelectedCategory: (state, action: PayloadAction<string>) => {
       state.selectedCategory = action.payload;
     },
-    setError: (state, action) => {
+    setError: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },

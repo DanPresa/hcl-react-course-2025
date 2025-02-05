@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<ProductCart[]>) => {
+    setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
     },
     setToggleDrawer: (state, action: PayloadAction<boolean>) => {
