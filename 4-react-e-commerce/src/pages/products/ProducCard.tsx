@@ -70,9 +70,9 @@ const ProductCard: FC<ProductProps> = ({ product }) => {
 
       <CardContent sx={{ textAlign: 'left' }}>
         {/* Product Name */}
-        <Typography variant="h6" fontWeight="bold">
+        {/* <Typography variant="h6" fontWeight="bold">
           {product.title}
-        </Typography>
+        </Typography> */}
 
         {/* Description */}
         <Typography variant="body2" color="text.secondary">

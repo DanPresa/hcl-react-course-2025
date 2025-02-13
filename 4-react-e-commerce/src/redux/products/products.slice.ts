@@ -19,7 +19,7 @@ const productSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    setProducts: (state, action: PayloadAction<ProductData>) => {
+    setProducts: (state, action) => {
       const { products, limit, skip, total } = action.payload;
 
       state.loading = false;

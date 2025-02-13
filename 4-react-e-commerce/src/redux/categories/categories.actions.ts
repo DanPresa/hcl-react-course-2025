@@ -1,5 +1,5 @@
-import { formatCategories } from '../../utils/formatCategories';
 import axiosInstance from '../../config/api/axiosInstance';
+import { formatCategories } from '../../utils/formatCategories';
 import { AppDispatch } from '../store';
 import {
   setCategories,
@@ -10,6 +10,7 @@ import {
 
 export const getCategories = () => async (dispatch: AppDispatch) => {
   dispatch(setLoading());
+
   try {
     const { data } = await axiosInstance.get('/products/category-list');
 
